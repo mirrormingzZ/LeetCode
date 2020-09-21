@@ -45,6 +45,7 @@ class Solution:
         return root
 
 
+# Morris 遍历
 class Solution2:
     def convertBST(self, root: TreeNode) -> TreeNode:
         def getSuccessor(node: TreeNode) -> TreeNode:
