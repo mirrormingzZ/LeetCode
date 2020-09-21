@@ -45,6 +45,36 @@ class Solution:
         return root
 
 
+class Solution2:
+    def convertBST(self, root: TreeNode) -> TreeNode:
+        def getSuccessor(node: TreeNode) -> TreeNode:
+            succ = node.right
+            while succ.left and succ.left != node:
+                succ = succ.left
+            return succ
+
+        total = 0
+        node = root
+
+        while node:
+            if not node.right:
+                total += node.val
+                node.val = total
+                node = node.left
+            else:
+                succ = getSuccessor(node)
+                if not succ.left:
+                    succ.left = node
+                    node = node.right
+                else:
+                    succ.left = None
+                    total += node.val
+                    node.val = total
+                    node = node.left
+
+        return root
+
+
 r = TreeNode(5)
 r.left = TreeNode(3)
 r.right = TreeNode(13)
@@ -53,6 +83,6 @@ r.left.right = TreeNode(4)
 r.right.left = TreeNode(10)
 r.right.right = TreeNode(15)
 
-s = Solution()
+s = Solution2()
 res = s.convertBST(r)
 print(res)
