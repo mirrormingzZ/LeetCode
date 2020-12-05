@@ -17,7 +17,6 @@
 
 输出: 16
 """
-from functools import reduce
 from typing import List
 
 
